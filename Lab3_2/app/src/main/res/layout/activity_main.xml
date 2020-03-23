@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#CD7F32">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/ButtonStyle"
+        android:text="Студенты"
+        android:onClick="onClickShow"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/ButtonStyle"
+        android:text="Добавить запись"
+        android:onClick="onClickAdd"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/ButtonStyle"
+        android:layout_marginBottom="15dp"
+        android:text="Изменить последнего на И.И.И."
+        android:onClick="onClickChange"/>
+
+</LinearLayout>
