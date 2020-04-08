@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lab5</string>
+    <string name="breed">Искать по породе</string>
+    <string name="favourites">Последние понравившиеся</string>
+    <string name="title">Ваши любимые кошки!</string>
+    <string name="line_search">Введите название породы</string>
+    <string name="search">Поиск</string>
+    <string name="api">Support of thecatapi.com</string>
+</resources>
