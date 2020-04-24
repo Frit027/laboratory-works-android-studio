@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00BFFF">
+
+    <Button
+        style="@style/ButtonStyle"
+        android:layout_width="270dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/buttonAdd_name"
+        android:onClick="onAddItemClick" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/ListItemTextViewStyle"
+            android:layout_weight="2"
+            android:gravity="start"
+            android:text="@string/name"
+            android:textSize="21sp"
+            android:layout_marginStart="5dp" />
+
+        <TextView
+            style="@style/ListItemTextViewStyle"
+            android:layout_weight="1"
+            android:text="@string/price"
+            android:textSize="21sp" />
+
+        <TextView
+            style="@style/ListItemTextViewStyle"
+            android:layout_weight="1"
+            android:text="@string/count"
+            android:textSize="23sp"
+            android:layout_marginEnd="5dp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="311dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/progress_bar"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:indeterminate="false"
+        android:progress="0" />
+
+</LinearLayout>

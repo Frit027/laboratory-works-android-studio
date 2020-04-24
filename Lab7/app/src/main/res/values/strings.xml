@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Lab7</string>
+    <string name="version">Version 1.0</string>
+
+    <string name="button1_name">Store-front</string>
+    <string name="button2_name">Back-end</string>
+    <string name="title">E-commerce решение</string>
+
+    <string name="hintText1">Введите наименование</string>
+    <string name="hintText2">Введите цену</string>
+    <string name="hintText3">Введите количество</string>
+
+    <string name="name">Наименование</string>
+    <string name="price">Цена</string>
+    <string name="count">Кол-во</string>
+
+    <string name="buttonAdd_name">Добавить</string>
+    <string name="buttonSave_name">Сохранить</string>
+    <string name="buttonDelete_name">Удалить</string>
+    <string name="buttonBuy_name">Купить</string>
+</resources>
