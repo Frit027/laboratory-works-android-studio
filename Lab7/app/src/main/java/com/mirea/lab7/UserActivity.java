@@ -17,6 +17,8 @@ public class UserActivity extends AppCompatActivity {
     private EditText priceBox;
     private EditText countBox;
 
+    private Intent intent;
+
     private long id = 0;
     private int pos = 0;
 
@@ -30,6 +32,7 @@ public class UserActivity extends AppCompatActivity {
         countBox = findViewById(R.id.count);
 
         databaseHelper = new DatabaseHelper(this);
+        intent = new Intent(this, BackendActivity.class);
 
         setDataItem();
     }
@@ -64,32 +67,32 @@ public class UserActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(getApplicationContext(),
                         "Цена содержит только целые и дробные числа, кол-во - только целые.",
-                             Toast.LENGTH_SHORT)
-                     .show();
+                        Toast.LENGTH_SHORT)
+                        .show();
             }
         } else {
             Toast.makeText(getApplicationContext(),
                     "Заполните все поля.", Toast.LENGTH_SHORT)
-                 .show();
+                    .show();
         }
     }
 
     public void onDeleteClick(View view) {
         view.startAnimation(MainActivity.animAlpha);
         databaseHelper.delete(id);
+        intent.putExtra(MyConstants.DELETE, true);
         goBack(nameBox.getText().toString(), priceBox.getText().toString(),
                 countBox.getText().toString());
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, BackendActivity.class);
         intent.putExtra(MyConstants.POSITION_KEY, pos);
+        setResult(RESULT_CANCELED, intent);
         finish();
     }
 
     private void goBack(String name, String price, String count) {
-        Intent intent = new Intent(this, BackendActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         intent.putExtra(MyConstants.ID_KEY, id);

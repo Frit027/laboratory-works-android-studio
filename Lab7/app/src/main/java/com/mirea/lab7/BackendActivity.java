@@ -57,7 +57,7 @@ public class BackendActivity extends AppCompatActivity {
                     prefEditor = settings.edit();
                     setPos.add(String.valueOf(position));
                     prefEditor.putStringSet(MyConstants.SET_KEY, setPos)
-                              .apply();
+                            .apply();
 
                     Intent intent = new Intent(getApplicationContext(), UserActivity.class);
                     intent.putExtra(MyConstants.ID_KEY, id);
@@ -84,23 +84,32 @@ public class BackendActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == MyConstants.REQUEST_ACCESS_TYPE) {
-            if (resultCode == RESULT_OK) {
-                pos = data.getIntExtra(MyConstants.POSITION_KEY, -1);
+            pos = data.getIntExtra(MyConstants.POSITION_KEY, -1);
 
-                if (pos != -1) {
+            if (resultCode == RESULT_OK) {
+                boolean isDelete = data.getBooleanExtra(MyConstants.DELETE, false);
+
+                if (pos != -1 && !isDelete) {
                     new ProgressTask(data).execute();
+                } else if (isDelete) {
+                    removePos();
+                    adapter.changeCursor(databaseHelper.getAllLines());
                 }
             }
             else {
-                setPos.remove(String.valueOf(pos));
-                prefEditor.remove(MyConstants.SET_KEY)
-                          .putStringSet(MyConstants.SET_KEY, setPos)
-                          .commit();
+                removePos();
             }
         }
         else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void removePos() {
+        setPos.remove(String.valueOf(pos));
+        prefEditor.remove(MyConstants.SET_KEY)
+                .putStringSet(MyConstants.SET_KEY, setPos)
+                .commit();
     }
 
     private class ProgressTask extends AsyncTask<Void, Integer, Void> {
@@ -143,10 +152,7 @@ public class BackendActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             if (setPos.contains(String.valueOf(pos))) {
-                setPos.remove(String.valueOf(pos));
-                prefEditor.remove(MyConstants.SET_KEY)
-                          .putStringSet(MyConstants.SET_KEY, setPos)
-                          .commit();
+                removePos();
             }
 
             Toast toast = Toast.makeText(getApplicationContext(),
